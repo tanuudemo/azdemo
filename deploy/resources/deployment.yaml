@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azdemo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azdemo
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: azdemo
+    spec:
+      containers:
+        - name: azdemo
+          image: docker.io/tanuuidp/demo:0.0.1
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512M
+            requests:
+              cpu: 200m
+              memory: 256M
